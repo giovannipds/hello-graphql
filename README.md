@@ -38,7 +38,7 @@ type Person {
 }
 ````
 
-- The ! means required
+- The `!` means required
 - Can have relations, single and multiple
 - rootFields and arguments fields (allPersons is root, name is arguments)
 
@@ -52,7 +52,7 @@ Queries:
 }
 ```
 
-- last parameter to return only the last 2 items
+- last parameter to return only the last 2 items, there are also skip and take arguments
 - first paramter to return the first N items
 - The changes to the API are made through Mutations (updating, creating, deleting). They always start with the Mutation keyword
 
@@ -95,9 +95,11 @@ type Query {
 
 - To create a mutation, it's similar, needs to define a typeMutation with that name. Same for subscription. It will end up with a whole Schema that definies all the capabilities. Later we add the allPosts to the type Query. Exercise: update relationship between Person and Post. What I would answer:
 
+```graphql
 type Mutation {
   updatePostAuthor(author: Person!): Post!
 }
+```
 
 - Spec: http://spec.graphql.org/
 - Needs a GraphQL server/service for that
@@ -113,3 +115,8 @@ User(id: String!): User
 ````
 
 GraphQL libraries like Relay or Apollo allows you to just describe and display.
+
+Apollo vs Relay vs urql
+
+- In practice, attention, mutation doesn't need to have be wrapped in { }.
+- Since you’re adding two mutations to the editor at once, the mutations need to have operation names. In your case, these are CreatePrismaLink and CreateApolloLink.
